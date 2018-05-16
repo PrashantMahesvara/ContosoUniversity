@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ContosoUniversity.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Overview of our students</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info" })
+</p>
+
+@using (Html.BeginForm("Index", "Students", FormMethod.Get))
+{
+    <p>
+        <b>
+            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </b>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortParm     })
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+@foreach (var item in Model)
+{
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstMiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info" } )
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-warning" })
+            </td>
+        </tr>
+    </tbody>
+}
+</table>
