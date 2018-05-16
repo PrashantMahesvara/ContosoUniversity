@@ -23,6 +23,12 @@ namespace ContosoUniversity.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            var viewModel = new DepartmentViewModel
+            {
+
+            };
+
+
             return View(_db.Departments.ToList());
         }
 

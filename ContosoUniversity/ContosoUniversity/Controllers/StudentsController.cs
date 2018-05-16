@@ -22,6 +22,12 @@ namespace ContosoUniversity.Controllers
         [HttpGet]
         public ViewResult Index(string sortOrder, string searchString)
         {
+            var viewModel = new StudentViewModel
+            {
+
+            };
+
+
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             var students = from s in _db.Students

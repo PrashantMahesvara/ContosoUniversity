@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Net;
+using ContosoUniversity.ViewModels.University;
 
 namespace ContosoUniversity.Controllers
 {
@@ -23,6 +24,12 @@ namespace ContosoUniversity.Controllers
         [HttpGet]
         public ActionResult Index(string sortOrder, string searchString)
         {
+            var viewModel = new InstructorViewModel
+            {
+
+            };
+
+
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             var instructors = from s in _db.Instructors

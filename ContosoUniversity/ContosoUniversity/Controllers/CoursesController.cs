@@ -1,4 +1,5 @@
 ﻿using ContosoUniversity.Models;
+using ContosoUniversity.ViewModels.University;
 using System;
 using System.Data;
 using System.Data.Entity;
@@ -39,7 +40,15 @@ namespace ContosoUniversity.Controllers
                     break;
             }
 
-            return View(_db.Courses.ToList());
+            var viewModel = new CourseViewModel
+            {
+                Courses = _db.Courses.ToList(),
+                Instructors = _db.Instructors.ToList(),
+                Departments = _db.Departments.ToList(),
+                Students = _db.Students.ToList()
+            };
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -55,13 +64,29 @@ namespace ContosoUniversity.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View("Create");
+            var viewModel = new CourseViewModel
+            {
+                Courses = _db.Courses.ToList(),
+                Instructors = _db.Instructors.ToList(),
+                Departments = _db.Departments.ToList(),
+                Students = _db.Students.ToList()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Title, Credits")]Course course)
+        public ActionResult Create(Course course)
         {
+            var viewModel = new CourseViewModel
+            {
+                Courses = _db.Courses.ToList(),
+                Instructors = _db.Instructors.ToList(),
+                Departments = _db.Departments.ToList(),
+                Students = _db.Students.ToList()
+            };
+
             try
             {
                 if (ModelState.IsValid)
@@ -73,9 +98,9 @@ namespace ContosoUniversity.Controllers
             }
             catch (DataException)
             {
-                ModelState.AddModelError("", "unable to save changes");
+                ModelState.AddModelError("", "Unable to save changes");
             }
-            return View("Create", course);
+            return View("Create", viewModel);
         }
 
         [HttpGet]
@@ -123,6 +148,5 @@ namespace ContosoUniversity.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-
     }
 }

@@ -9,7 +9,7 @@ namespace ContosoUniversity.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(ContosoUniversity.Models.ApplicationDbContext context)

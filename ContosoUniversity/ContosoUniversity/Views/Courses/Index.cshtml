@@ -1,59 +1,60 @@
-﻿@model IEnumerable<ContosoUniversity.Models.Course>
+﻿@*@model IEnumerable<ContosoUniversity.ViewModels.University.CourseViewModel>*@
+
+@model ContosoUniversity.ViewModels.University.CourseViewModel
+
+@*@model ContosoUniversity.Models.Course*@
+
+
+@*@model IEnumerable<ContosoUniversity.Models.Course>*@
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Course overview";
 }
 
-<h2>Overview of our courses</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Create New", "Create")
 </p>
-
-@using (Html.BeginForm("Index", "Courses", FormMethod.Get))
-{
-    <p>
-        <b>
-            Find by course name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-            <input type="submit" value="Search" />
-        </b>
-    </p>
-}
-
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Credits)
-        </th>
-        <th>
-            Actions
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Credits)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-danger" })
-                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-warning" })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Course.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course.Credits)
+            </th>
+            <th>
+                Instructor
+            </th>
+            <th>
+                Department
+            </th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Courses)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Credits)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
