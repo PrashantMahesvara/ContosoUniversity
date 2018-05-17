@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace ContosoUniversity.Controllers
 {
-    public class CoursesController : Controller
+    public class DepartmentsController : Controller
     {
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
@@ -19,23 +19,23 @@ namespace ContosoUniversity.Controllers
             base.Dispose(disposing);
             _db.Dispose();
         }
-        
+
         [HttpGet]
         public ViewResult Index(string sortOrder, string searchString)
         {
-            var listOfCourses = _db.Courses.ToList();
+            var listOfDepartments = _db.Departments.ToList();
 
-            return View(listOfCourses);
+            return View(listOfDepartments);
         }
 
         [HttpGet]
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
-            var courseDetails = _db.Courses.Find(id);
-            if (courseDetails == null)
+            var departmentDetails = _db.Departments.Find(id);
+            if (departmentDetails == null)
                 return HttpNotFound();
 
-            return View(courseDetails);
+            return View(departmentDetails);
         }
 
         [HttpGet]
@@ -46,13 +46,13 @@ namespace ContosoUniversity.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Course course)
+        public ActionResult Create(Department department)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _db.Courses.Add(course);
+                    _db.Departments.Add(department);
                     _db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -61,60 +61,57 @@ namespace ContosoUniversity.Controllers
             {
                 ModelState.AddModelError("", "unable to save changes");
             }
-            return View("Create", course);
+            return View("Create", department);
         }
 
         [HttpGet]
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            var course = _db.Courses.Find(id);
+            var department = _db.Departments.Find(id);
 
-            if (course == null)
+            if (department == null)
                 return HttpNotFound();
 
-            return View(course);
+            return View(department);
         }
 
         [HttpPost]
-        public ActionResult Edit(Course course, string id)
+        public ActionResult Edit(Department department, int id)
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(course).State = EntityState.Modified;
+                _db.Entry(department).State = EntityState.Modified;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(course);
+            return View(department);
         }
 
 
         [HttpGet]
-        public ActionResult Delete(string id, bool? saveChangesError = false)
+        public ActionResult Delete(int id, bool? saveChangesError = false)
         {
-            Course course = _db.Courses.Find(id);
+            var department = _db.Departments.Find(id);
 
-            if (course == null)
+            if (department == null)
                 return HttpNotFound();
-
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             if (saveChangesError.GetValueOrDefault())
             {
                 ViewBag.ErrorMessage = "Delete failed. Try again!";
             }
-            return View(course);
+            return View(department);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             try
             {
-                Course course = _db.Courses.Find(id);
-                _db.Courses.Remove(course);
+                var department = _db.Departments.Find(id);
+                _db.Departments.Remove(department);
                 _db.SaveChanges();
             }
             catch (DataException ex)

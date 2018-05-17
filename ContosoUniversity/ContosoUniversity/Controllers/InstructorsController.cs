@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace ContosoUniversity.Controllers
 {
-    public class CoursesController : Controller
+    public class InstructorsController : Controller
     {
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
@@ -19,23 +19,23 @@ namespace ContosoUniversity.Controllers
             base.Dispose(disposing);
             _db.Dispose();
         }
-        
+
         [HttpGet]
         public ViewResult Index(string sortOrder, string searchString)
         {
-            var listOfCourses = _db.Courses.ToList();
+            var listOfInstructors = _db.Instructors.ToList();
 
-            return View(listOfCourses);
+            return View(listOfInstructors);
         }
 
         [HttpGet]
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
-            var courseDetails = _db.Courses.Find(id);
-            if (courseDetails == null)
+            var instructorDetails = _db.Instructors.Find(id);
+            if (instructorDetails == null)
                 return HttpNotFound();
 
-            return View(courseDetails);
+            return View(instructorDetails);
         }
 
         [HttpGet]
@@ -46,13 +46,13 @@ namespace ContosoUniversity.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Course course)
+        public ActionResult Create(Instructor instructor)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _db.Courses.Add(course);
+                    _db.Instructors.Add(instructor);
                     _db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -61,40 +61,40 @@ namespace ContosoUniversity.Controllers
             {
                 ModelState.AddModelError("", "unable to save changes");
             }
-            return View("Create", course);
+            return View("Create", instructor);
         }
 
         [HttpGet]
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            var course = _db.Courses.Find(id);
+            var instructor = _db.Instructors.Find(id);
 
-            if (course == null)
+            if (instructor == null)
                 return HttpNotFound();
 
-            return View(course);
+            return View(instructor);
         }
 
         [HttpPost]
-        public ActionResult Edit(Course course, string id)
+        public ActionResult Edit(Instructor instructor, string id)
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(course).State = EntityState.Modified;
+                _db.Entry(instructor).State = EntityState.Modified;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(course);
+            return View(instructor);
         }
 
 
         [HttpGet]
-        public ActionResult Delete(string id, bool? saveChangesError = false)
+        public ActionResult Delete(int id, bool? saveChangesError = false)
         {
-            Course course = _db.Courses.Find(id);
+            var instructor  = _db.Instructors.Find(id);
 
-            if (course == null)
+            if (instructor == null)
                 return HttpNotFound();
 
             if (id == null)
@@ -104,17 +104,17 @@ namespace ContosoUniversity.Controllers
             {
                 ViewBag.ErrorMessage = "Delete failed. Try again!";
             }
-            return View(course);
+            return View(instructor);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             try
             {
-                Course course = _db.Courses.Find(id);
-                _db.Courses.Remove(course);
+                Instructor instructor = _db.Instructors.Find(id);
+                _db.Instructors.Remove(instructor);
                 _db.SaveChanges();
             }
             catch (DataException ex)

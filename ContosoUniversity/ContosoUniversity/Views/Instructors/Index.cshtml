@@ -1,30 +1,32 @@
-﻿@model IEnumerable<ContosoUniversity.Models.Course>
+﻿@model IEnumerable<ContosoUniversity.Models.Instructor>
 
 @{
-    ViewBag.Title = "Courses";
+    ViewBag.Title = "Index";
 }
 
-<h2>Courses overview</h2>
-<h4>There are @Model.Count() courses at our university</h4>
+<h2>Instructor overview</h2>
+<h4>There are @Model.Count() instructors at our university</h4>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.OfficeAssignment.Location)
             </th>
             <th>
-                @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm })
+                @Html.DisplayNameFor(model => model.LastName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Credits)
+                @Html.DisplayNameFor(model => model.FirstMiddleName)
             </th>
             <th>
-                Actions
+                @Html.DisplayNameFor(model => model.HireDate)
             </th>
+            <th></th>
         </tr>
     </thead>
 
@@ -33,13 +35,16 @@
         {
             <tr>
                 <td>
-                    <b>@Html.DisplayFor(modelItem => item.Id)</b>
+                    @Html.DisplayFor(modelItem => item.OfficeAssignment.Location)
                 </td>
                 <td>
-                    @Html.ActionLink(item.Title, "Details", new { id = item.Id })
+                    @Html.DisplayFor(modelItem => item.LastName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Credits)
+                    @Html.DisplayFor(modelItem => item.FirstMiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HireDate)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id })
@@ -49,6 +54,4 @@
             </tr>
         }
     </tbody>
-    <br />
 </table>
-

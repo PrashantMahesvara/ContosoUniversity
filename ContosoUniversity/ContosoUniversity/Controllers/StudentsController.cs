@@ -22,43 +22,9 @@ namespace ContosoUniversity.Controllers
         [HttpGet]
         public ViewResult Index(string sortOrder, string searchString)
         {
-            var viewModel = new StudentViewModel
-            {
-                Students = _db.Students.ToList(),
-                Enrollments = _db.Enrollments.ToList(),
-                Courses = _db.Courses.ToList()
-            };
+            var listOfStudents = _db.Students.ToList();
 
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-            var students = from s in _db.Students
-                           select s;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                students = _db.Students.Where(s =>
-                s.LastName.ToLower().Contains(searchString.ToLower())
-                ||
-                s.FirstMiddleName.ToLower().Contains(searchString.ToLower()));
-            }
-
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    students = students.OrderByDescending(s => s.LastName);
-                    break;
-                case "Date":
-                    students = students.OrderBy(s => s.EnrollmentDate);
-                    break;
-                case "date_desc":
-                    students = students.OrderByDescending(s => s.EnrollmentDate);
-                    break;
-                default:
-                    students = students.OrderBy(s => s.LastName);
-                    break;
-            }
-
-            return View(viewModel);
+            return View(listOfStudents);
         }
 
         [HttpGet]
@@ -113,7 +79,7 @@ namespace ContosoUniversity.Controllers
             if (studentDetails == null)
                 return HttpNotFound();
 
-            return View(viewModel);
+            return View(studentDetails);
         }
 
         [HttpPost]
@@ -135,7 +101,7 @@ namespace ContosoUniversity.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(viewModel);
+            return View(student);
         }
 
         [HttpGet]
