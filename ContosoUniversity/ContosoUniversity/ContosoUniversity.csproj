@@ -196,58 +196,21 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
-    <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InstructorsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Enums\Grade.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804141118418_InitialSetup.cs" />
-    <Compile Include="Migrations\201804141118418_InitialSetup.Designer.cs">
-      <DependentUpon>201804141118418_InitialSetup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804141138328_ChangedCourseClassIdToString.cs" />
-    <Compile Include="Migrations\201804141138328_ChangedCourseClassIdToString.Designer.cs">
-      <DependentUpon>201804141138328_ChangedCourseClassIdToString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804142031029_AddedkeyToCourseClass.cs" />
-    <Compile Include="Migrations\201804142031029_AddedkeyToCourseClass.Designer.cs">
-      <DependentUpon>201804142031029_AddedkeyToCourseClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804142032440_AddedInstructorClassAndModifiedCourseClass.cs" />
-    <Compile Include="Migrations\201804142032440_AddedInstructorClassAndModifiedCourseClass.Designer.cs">
-      <DependentUpon>201804142032440_AddedInstructorClassAndModifiedCourseClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804151733252_AddedDepartmentToDb.cs" />
-    <Compile Include="Migrations\201804151733252_AddedDepartmentToDb.Designer.cs">
-      <DependentUpon>201804151733252_AddedDepartmentToDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804151914520_AddedofficeAssignemtnClass.cs" />
-    <Compile Include="Migrations\201804151914520_AddedofficeAssignemtnClass.Designer.cs">
-      <DependentUpon>201804151914520_AddedofficeAssignemtnClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805161515176_NewMigration.cs" />
-    <Compile Include="Migrations\201805161515176_NewMigration.Designer.cs">
-      <DependentUpon>201805161515176_NewMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805161518511_SeedStudents.cs" />
-    <Compile Include="Migrations\201805161518511_SeedStudents.Designer.cs">
-      <DependentUpon>201805161518511_SeedStudents.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805161847156_ChangedCoursesBack.cs" />
-    <Compile Include="Migrations\201805161847156_ChangedCoursesBack.Designer.cs">
-      <DependentUpon>201805161847156_ChangedCoursesBack.cs</DependentUpon>
+    <Compile Include="Migrations\201805170924172_AddedInformationToCourse.cs" />
+    <Compile Include="Migrations\201805170924172_AddedInformationToCourse.Designer.cs">
+      <DependentUpon>201805170924172_AddedInformationToCourse.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Instructor.cs" />
-    <Compile Include="Models\OfficeAssignment.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -348,7 +311,10 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\Courses\Details.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
     <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -362,32 +328,8 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804141118418_InitialSetup.resx">
-      <DependentUpon>201804141118418_InitialSetup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804141138328_ChangedCourseClassIdToString.resx">
-      <DependentUpon>201804141138328_ChangedCourseClassIdToString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804142031029_AddedkeyToCourseClass.resx">
-      <DependentUpon>201804142031029_AddedkeyToCourseClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804142032440_AddedInstructorClassAndModifiedCourseClass.resx">
-      <DependentUpon>201804142032440_AddedInstructorClassAndModifiedCourseClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804151733252_AddedDepartmentToDb.resx">
-      <DependentUpon>201804151733252_AddedDepartmentToDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804151914520_AddedofficeAssignemtnClass.resx">
-      <DependentUpon>201804151914520_AddedofficeAssignemtnClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805161515176_NewMigration.resx">
-      <DependentUpon>201805161515176_NewMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805161518511_SeedStudents.resx">
-      <DependentUpon>201805161518511_SeedStudents.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805161847156_ChangedCoursesBack.resx">
-      <DependentUpon>201805161847156_ChangedCoursesBack.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805170924172_AddedInformationToCourse.resx">
+      <DependentUpon>201805170924172_AddedInformationToCourse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

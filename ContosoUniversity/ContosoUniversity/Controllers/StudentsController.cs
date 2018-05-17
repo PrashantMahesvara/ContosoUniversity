@@ -24,9 +24,10 @@ namespace ContosoUniversity.Controllers
         {
             var viewModel = new StudentViewModel
             {
-
+                Students = _db.Students.ToList(),
+                Enrollments = _db.Enrollments.ToList(),
+                Courses = _db.Courses.ToList()
             };
-
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -56,8 +57,8 @@ namespace ContosoUniversity.Controllers
                     students = students.OrderBy(s => s.LastName);
                     break;
             }
-            var listOfStudents = _db.Students.ToList();
-            return View(students.ToList());
+
+            return View(viewModel);
         }
 
         [HttpGet]

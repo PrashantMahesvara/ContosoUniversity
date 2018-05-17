@@ -7,18 +7,18 @@ namespace ContosoUniversity.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedkeyToCourseClass : IMigrationMetadata
+    public sealed partial class AddedInformationToCourse : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedkeyToCourseClass));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedInformationToCourse));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804142031029_AddedkeyToCourseClass"; }
+            get { return "201805170924172_AddedInformationToCourse"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target

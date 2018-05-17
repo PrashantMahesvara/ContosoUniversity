@@ -1,9 +1,11 @@
 ﻿using ContosoUniversity.Models;
-using ContosoUniversity.ViewModels.University;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ContosoUniversity.Controllers
@@ -17,12 +19,16 @@ namespace ContosoUniversity.Controllers
             base.Dispose(disposing);
             _db.Dispose();
         }
-
+        
         [HttpGet]
-        public ActionResult Index(string sortOrder, string searchString)
+        public ViewResult Index(string sortOrder, string searchString)
         {
-            ViewBag.CourseSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            var courses = from s in _db.Courses select s;
+            var listOfCourses = _db.Courses.ToList();
+
+            ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewBag.CreditSortParm = sortOrder == "Credits" ? "credits_desc" : "Credits";
+            var courses = from c in _db.Courses
+                           select c;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -32,23 +38,20 @@ namespace ContosoUniversity.Controllers
 
             switch (sortOrder)
             {
-                case "name_desc":
+                case "title_desc":
                     courses = courses.OrderByDescending(s => s.Title);
+                    break;
+                case "Credits":
+                    courses = courses.OrderBy(s => s.Credits);
+                    break;
+                case "credits_desc":
+                    courses = courses.OrderByDescending(s => s.Credits);
                     break;
                 default:
                     courses = courses.OrderBy(s => s.Title);
                     break;
             }
-
-            var viewModel = new CourseViewModel
-            {
-                Courses = _db.Courses.ToList(),
-                Instructors = _db.Instructors.ToList(),
-                Departments = _db.Departments.ToList(),
-                Students = _db.Students.ToList()
-            };
-
-            return View(viewModel);
+            return View(listOfCourses);
         }
 
         [HttpGet]
@@ -64,29 +67,13 @@ namespace ContosoUniversity.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var viewModel = new CourseViewModel
-            {
-                Courses = _db.Courses.ToList(),
-                Instructors = _db.Instructors.ToList(),
-                Departments = _db.Departments.ToList(),
-                Students = _db.Students.ToList()
-            };
-
-            return View(viewModel);
+            return View("Create");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Course course)
         {
-            var viewModel = new CourseViewModel
-            {
-                Courses = _db.Courses.ToList(),
-                Instructors = _db.Instructors.ToList(),
-                Departments = _db.Departments.ToList(),
-                Students = _db.Students.ToList()
-            };
-
             try
             {
                 if (ModelState.IsValid)
@@ -98,20 +85,20 @@ namespace ContosoUniversity.Controllers
             }
             catch (DataException)
             {
-                ModelState.AddModelError("", "Unable to save changes");
+                ModelState.AddModelError("", "unable to save changes");
             }
-            return View("Create", viewModel);
+            return View("Create", course);
         }
 
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            var courseDetails = _db.Courses.Find(id);
+            var course = _db.Courses.Find(id);
 
-            if (courseDetails == null)
+            if (course == null)
                 return HttpNotFound();
 
-            return View(courseDetails);
+            return View(course);
         }
 
         [HttpPost]
@@ -123,29 +110,44 @@ namespace ContosoUniversity.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View("Edit", course);
+
+            return View(course);
         }
 
-        public ActionResult Delete(string id)
+
+        [HttpGet]
+        public ActionResult Delete(string id, bool? saveChangesError = false)
         {
-            var courseToDelete = _db.Courses.Find(id);
-
-            if (courseToDelete == null)
-                return HttpNotFound();
-
-                return View(courseToDelete);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(string id, Course course)
-        {
-            course = _db.Courses.Find(id);
+            Course course = _db.Courses.Find(id);
 
             if (course == null)
                 return HttpNotFound();
 
-            _db.Courses.Remove(course);
-            _db.SaveChanges();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMessage = "Delete failed. Try again!";
+            }
+            return View(course);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(string id)
+        {
+            try
+            {
+                Course course = _db.Courses.Find(id);
+                _db.Courses.Remove(course);
+                _db.SaveChanges();
+            }
+            catch (DataException ex)
+            {
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            }
+
             return RedirectToAction("Index");
         }
     }

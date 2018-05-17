@@ -12,14 +12,13 @@ namespace ContosoUniversity.Models
         public string Id { get; set; }
         
         public string Title { get; set; }
+
         [Display(Name = "Punti")]
         [Range(0, 5)]
         public int Credits { get; set; }
 
-        public int DepartmentId { get; set; }
-        public virtual Department Department { get; set; }
+        public string Information { get; set; }
 
         public virtual ICollection<Enrollment> Enrollments { get; set; }
-        public virtual ICollection<Instructor> Instructors { get; set; }
     }
 }

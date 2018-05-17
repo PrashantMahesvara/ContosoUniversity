@@ -1,17 +1,10 @@
-﻿@*@model IEnumerable<ContosoUniversity.ViewModels.University.CourseViewModel>*@
-
-@model ContosoUniversity.ViewModels.University.CourseViewModel
-
-@*@model ContosoUniversity.Models.Course*@
-
-
-@*@model IEnumerable<ContosoUniversity.Models.Course>*@
+﻿@model IEnumerable<ContosoUniversity.Models.Course>
 
 @{
-    ViewBag.Title = "Course overview";
+    ViewBag.Title = "Courses";
 }
 
-<h2>Index</h2>
+<h2>Courses overview</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -20,41 +13,42 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Course.Id)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Course.Title)
+                @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Course.Credits)
+                @Html.DisplayNameFor(model => model.Credits)
             </th>
             <th>
-                Instructor
-            </th>
-            <th>
-                Department
+                Actions
             </th>
         </tr>
     </thead>
+
     <tbody>
-        @foreach (var item in Model.Courses)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Id)
+                    <b>@Html.DisplayFor(modelItem => item.Id)</b>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    @Html.ActionLink(item.Title, "Details", new { id = item.Id })
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Credits)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
             </tr>
         }
     </tbody>
+    <br />
 </table>
+
+There are @Model.Count() courses at our university
