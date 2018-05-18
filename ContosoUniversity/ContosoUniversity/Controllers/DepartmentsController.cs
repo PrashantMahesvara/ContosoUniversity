@@ -1,4 +1,5 @@
 ﻿using ContosoUniversity.Models;
+using ContosoUniversity.ViewModels.University;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -37,13 +38,25 @@ namespace ContosoUniversity.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View("Create");
+            var viewModel = new DepartmentViewModel
+            {
+                Instructors = _db.Instructors.ToList(),
+                Departments = _db.Departments.ToList()
+            };
+
+            return View("Create", viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Department department)
         {
+            var viewModel = new DepartmentViewModel
+            {
+                Instructors = _db.Instructors.ToList(),
+                Departments = _db.Departments.ToList()
+            };
+
             try
             {
                 if (ModelState.IsValid)
@@ -57,7 +70,7 @@ namespace ContosoUniversity.Controllers
             {
                 ModelState.AddModelError("", "unable to save changes");
             }
-            return View("Create", department);
+            return View("Create", viewModel);
         }
 
         [HttpGet]
