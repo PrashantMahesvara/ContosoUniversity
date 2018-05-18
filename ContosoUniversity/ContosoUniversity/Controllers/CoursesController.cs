@@ -1,11 +1,8 @@
 ﻿using ContosoUniversity.Models;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ContosoUniversity.Controllers
@@ -87,7 +84,6 @@ namespace ContosoUniversity.Controllers
 
             return View(course);
         }
-
 
         [HttpGet]
         public ActionResult Delete(string id, bool? saveChangesError = false)

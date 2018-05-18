@@ -8,7 +8,7 @@
 <h4>There are @Model.Count() students at our university</h4>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Student", "Create", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <thead>
@@ -53,9 +53,9 @@
                     @Html.DisplayFor(modelItem => item.SSN)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                    @Html.ActionLink("Details", "Details", new { id = item.Id })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id },  new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id },  new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id },  new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }

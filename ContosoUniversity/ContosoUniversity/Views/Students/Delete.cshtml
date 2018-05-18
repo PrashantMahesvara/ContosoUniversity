@@ -1,11 +1,12 @@
 ﻿@model ContosoUniversity.Models.Student
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Details of @Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstMiddleName)</h2>
+<h2>Remove student @Html.DisplayFor(model => model.FirstMiddleName)</h2>
 
+<h3>Are you sure you want to remove @Html.DisplayFor(model => model.FirstMiddleName)?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -50,8 +51,14 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id },  new { @class = "btn btn-primary" })
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
-</p>

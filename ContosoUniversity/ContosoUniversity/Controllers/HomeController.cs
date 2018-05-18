@@ -1,9 +1,6 @@
 ﻿using ContosoUniversity.Models;
 using ContosoUniversity.ViewModels.University;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ContosoUniversity.Controllers
@@ -18,7 +15,7 @@ namespace ContosoUniversity.Controllers
             _db.Dispose();
         }
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
             return View();
         }

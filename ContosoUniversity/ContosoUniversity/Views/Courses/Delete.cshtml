@@ -7,8 +7,7 @@
 <h2>Delete course @Html.DisplayFor(model => model.Id)</h2>
 
 <h3>Are you sure you want to delete @Html.DisplayFor(model => model.Title)?</h3>
-<div>
- 
+<div> 
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -41,8 +40,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
         </div>
     }
 </div>

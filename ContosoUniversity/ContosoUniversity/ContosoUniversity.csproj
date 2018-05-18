@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201805171035574_ChangedIdNameOnOfficeAssignments.Designer.cs">
       <DependentUpon>201805171035574_ChangedIdNameOnOfficeAssignments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805181154541_AddedFullNameToStudentClass.cs" />
+    <Compile Include="Migrations\201805181154541_AddedFullNameToStudentClass.Designer.cs">
+      <DependentUpon>201805181154541_AddedFullNameToStudentClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
@@ -342,6 +346,7 @@
     <Content Include="Views\Departments\Create.cshtml" />
     <Content Include="Views\Departments\Edit.cshtml" />
     <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Students\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -363,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805171035574_ChangedIdNameOnOfficeAssignments.resx">
       <DependentUpon>201805171035574_ChangedIdNameOnOfficeAssignments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805181154541_AddedFullNameToStudentClass.resx">
+      <DependentUpon>201805181154541_AddedFullNameToStudentClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
