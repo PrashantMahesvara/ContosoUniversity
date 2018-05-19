@@ -33,7 +33,17 @@ namespace ContosoUniversity.Controllers
             if (courseDetails == null)
                 return HttpNotFound();
 
-            return View(courseDetails);
+            var viewModel = new CourseViewModel
+            {
+                Course = courseDetails,
+                Courses = _db.Courses.ToList(),
+   
+                Instructors = _db.Instructors.ToList(),
+                Departments = _db.Departments.ToList()
+            };
+
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -56,6 +66,7 @@ namespace ContosoUniversity.Controllers
             var viewModel = new CourseViewModel
             {
                 Courses = _db.Courses.ToList(),
+
                 Instructors = _db.Instructors.ToList(),
                 Departments = _db.Departments.ToList()
             };
@@ -76,7 +87,7 @@ namespace ContosoUniversity.Controllers
             return View("Create", viewModel);
         }
 
-        [HttpGet]
+
         public ActionResult Edit(string id)
         {
             var course = _db.Courses.Find(id);
@@ -84,20 +95,37 @@ namespace ContosoUniversity.Controllers
             if (course == null)
                 return HttpNotFound();
 
-            return View(course);
+            var viewModel = new CourseViewModel
+            {              
+                Course = course,
+                Courses = _db.Courses.ToList(),
+                Instructors = _db.Instructors.ToList(),
+                Departments = _db.Departments.ToList()
+            };
+
+
+            return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(Course course, string id)
+        public ActionResult Edit(Course course)
         {
+            var viewModel = new CourseViewModel
+            {
+                Course = course,
+                Courses = _db.Courses.ToList(),
+                Instructors = _db.Instructors.ToList(),
+                Departments = _db.Departments.ToList()
+            };
+
             if (ModelState.IsValid)
             {
-                _db.Entry(course).State = EntityState.Modified;
+                //_db.Entry(course).State = EntityState.Modified;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(course);
+            return View(viewModel);
         }
 
         [HttpGet]

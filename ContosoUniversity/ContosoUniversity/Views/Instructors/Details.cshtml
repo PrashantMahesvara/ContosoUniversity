@@ -43,9 +43,9 @@
 
         <dd>
             <table class="table">
-                <tr> <th>Course Title</th> <th>Grade</th> </tr> @foreach (var item in Model.Courses)
+                <tr> <th>Course Code and Title</th>  </tr> @foreach (var item in Model.Courses)
                 {
-                    <tr> <td> @Html.DisplayFor(modelItem => item.Title) </td> <td> @Html.DisplayFor(modelItem => item.Id) </td> </tr>}
+                    <tr> <td>@Html.DisplayFor(modelItem => item.Id), @Html.DisplayFor(modelItem => item.Title) </td> <td>  </td> </tr>}
             </table>
         </dd>
 

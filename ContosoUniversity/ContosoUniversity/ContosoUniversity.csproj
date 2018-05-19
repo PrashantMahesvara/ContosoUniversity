@@ -221,6 +221,22 @@
     <Compile Include="Migrations\201805181154541_AddedFullNameToStudentClass.Designer.cs">
       <DependentUpon>201805181154541_AddedFullNameToStudentClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805181442101_AddedDepartmentToCourseClass.cs" />
+    <Compile Include="Migrations\201805181442101_AddedDepartmentToCourseClass.Designer.cs">
+      <DependentUpon>201805181442101_AddedDepartmentToCourseClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805181443017_RemovedDepartmentToCourseClass.cs" />
+    <Compile Include="Migrations\201805181443017_RemovedDepartmentToCourseClass.Designer.cs">
+      <DependentUpon>201805181443017_RemovedDepartmentToCourseClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805182234193_AddedInstructorToCourseClass.cs" />
+    <Compile Include="Migrations\201805182234193_AddedInstructorToCourseClass.Designer.cs">
+      <DependentUpon>201805182234193_AddedInstructorToCourseClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805182242290_ChagedDepartmentAndCourseClass.cs" />
+    <Compile Include="Migrations\201805182242290_ChagedDepartmentAndCourseClass.Designer.cs">
+      <DependentUpon>201805182242290_ChagedDepartmentAndCourseClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
@@ -371,6 +387,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805181154541_AddedFullNameToStudentClass.resx">
       <DependentUpon>201805181154541_AddedFullNameToStudentClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805181442101_AddedDepartmentToCourseClass.resx">
+      <DependentUpon>201805181442101_AddedDepartmentToCourseClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805181443017_RemovedDepartmentToCourseClass.resx">
+      <DependentUpon>201805181443017_RemovedDepartmentToCourseClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805182234193_AddedInstructorToCourseClass.resx">
+      <DependentUpon>201805182234193_AddedInstructorToCourseClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805182242290_ChagedDepartmentAndCourseClass.resx">
+      <DependentUpon>201805182242290_ChagedDepartmentAndCourseClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

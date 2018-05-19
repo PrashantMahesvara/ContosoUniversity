@@ -21,7 +21,7 @@ namespace ContosoUniversity.Models
         public DateTime StartDate { get; set; }
         public int? InstructorId { get; set; }
         public virtual Instructor Administrator { get; set; }
-        public virtual ICollection<Course> Courses { get; set; }
+        //public virtual ICollection<Course> Courses { get; set; }
     
     }
 }

@@ -5,6 +5,7 @@
 }
 
 <h2>Department overview</h2>
+<h4>We have @Model.Count() departments at our university</h4>
 
 <p>
     @Html.ActionLink("Add Department", "Create", null, new { @class = "btn btn-primary" })
@@ -24,7 +25,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.StartDate)
             </th>
-            <th></th>
+            <th>
+                Actions
+            </th>
         </tr>
     </thead>
 

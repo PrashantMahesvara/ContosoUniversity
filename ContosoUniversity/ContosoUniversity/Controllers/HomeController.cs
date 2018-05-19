@@ -31,14 +31,12 @@ namespace ContosoUniversity.Controllers
 
                                     };
 
-            ViewBag.Message = "Your application description page.";
-
             return View(data.ToList());
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contact Contoso University.";
 
             return View();
         }

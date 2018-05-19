@@ -1,4 +1,4 @@
-﻿@model ContosoUniversity.Models.Course
+﻿@model ContosoUniversity.ViewModels.University.CourseViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -10,39 +10,65 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Course.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.Course.Title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Credits)
+            @Html.DisplayNameFor(model => model.Course.Credits)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Credits)
+            @Html.DisplayFor(model => model.Course.Credits)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Information)
+            @Html.DisplayNameFor(model => model.Course.Information)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Information)
+            @Html.DisplayFor(model => model.Course.Information)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instructor)
+        </dt>
+        <dd>
+
+            @foreach (var item in Model.Course.Instructors)
+            {
+                @Html.DisplayFor(modelItem => item.FullName)
+            }
+        </dd>
+
         <br />
-        <dt> @Html.DisplayNameFor(model => model.Enrollments) </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enrollments)
+        </dt>
+
         <dd>
             <table class="table">
-                <tr> <th>Course Title</th> <th>Grade</th> </tr> @foreach (var item in Model.Enrollments)
-                {
-                    <tr> <td> @Html.DisplayFor(modelItem => item.Student.LastName) </td> <td> @Html.DisplayFor(modelItem => item.Grade) </td> </tr>}
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Course.Enrollments)
+                    {
+                        <tr>
+                            <td> @Html.DisplayFor(modelItem => item.Student.FullName) </td>
+                       </tr>}
+                </tbody>
+
             </table>
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class= "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null , new { @class = "btn btn-primary" })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Course.Id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
 </p>
