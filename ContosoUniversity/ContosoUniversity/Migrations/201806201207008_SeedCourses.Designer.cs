@@ -7,13 +7,13 @@ namespace ContosoUniversity.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedDepartmentToCourseClass : IMigrationMetadata
+    public sealed partial class SeedCourses : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedDepartmentToCourseClass));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedCourses));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805181442101_AddedDepartmentToCourseClass"; }
+            get { return "201806201207008_SeedCourses"; }
         }
         
         string IMigrationMetadata.Source

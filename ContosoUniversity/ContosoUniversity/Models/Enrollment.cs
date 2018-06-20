@@ -6,7 +6,7 @@ namespace ContosoUniversity.Models
     public class Enrollment
     {
         public int Id { get; set; }
-        public string CourseId { get; set; }
+        public int CourseId { get; set; }
         public int StudentId { get; set; }
         [DisplayFormat(NullDisplayText ="No grade")]
         public Grade? Grade { get; set; }

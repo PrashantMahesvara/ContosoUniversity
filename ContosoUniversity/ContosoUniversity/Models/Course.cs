@@ -7,10 +7,11 @@ namespace ContosoUniversity.Models
     public class Course
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]//makes this identifier not auto-updating. Manual Id now required
+        public int Id { get; set; }
+
         [Display(Name = "Course Code")]
-        public string Id { get; set; }
-        
+        public string CourseCode { get; set; }
+
         public string Title { get; set; }
 
         [Display(Name = "Punti")]
@@ -21,8 +22,8 @@ namespace ContosoUniversity.Models
 
         public virtual ICollection<Enrollment> Enrollments { get; set; }
 
-        public virtual ICollection<Instructor> Instructors { get; set; }
+        //public virtual ICollection<Instructor> Instructors { get; set; }
 
-        public virtual Department Department { get; set; }
+        //public virtual Department Department { get; set; }
     }
 }

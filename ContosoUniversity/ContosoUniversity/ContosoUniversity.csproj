@@ -195,47 +195,23 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CoursesController.cs" />
-    <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InstructorsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Enums\Grade.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805170924172_AddedInformationToCourse.cs" />
-    <Compile Include="Migrations\201805170924172_AddedInformationToCourse.Designer.cs">
-      <DependentUpon>201805170924172_AddedInformationToCourse.cs</DependentUpon>
+    <Compile Include="Migrations\201806200427361_InitialSetup.cs" />
+    <Compile Include="Migrations\201806200427361_InitialSetup.Designer.cs">
+      <DependentUpon>201806200427361_InitialSetup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805171032204_AddedNewClasses.cs" />
-    <Compile Include="Migrations\201805171032204_AddedNewClasses.Designer.cs">
-      <DependentUpon>201805171032204_AddedNewClasses.cs</DependentUpon>
+    <Compile Include="Migrations\201806201207008_SeedCourses.cs" />
+    <Compile Include="Migrations\201806201207008_SeedCourses.Designer.cs">
+      <DependentUpon>201806201207008_SeedCourses.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805171035574_ChangedIdNameOnOfficeAssignments.cs" />
-    <Compile Include="Migrations\201805171035574_ChangedIdNameOnOfficeAssignments.Designer.cs">
-      <DependentUpon>201805171035574_ChangedIdNameOnOfficeAssignments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805181154541_AddedFullNameToStudentClass.cs" />
-    <Compile Include="Migrations\201805181154541_AddedFullNameToStudentClass.Designer.cs">
-      <DependentUpon>201805181154541_AddedFullNameToStudentClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805181442101_AddedDepartmentToCourseClass.cs" />
-    <Compile Include="Migrations\201805181442101_AddedDepartmentToCourseClass.Designer.cs">
-      <DependentUpon>201805181442101_AddedDepartmentToCourseClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805181443017_RemovedDepartmentToCourseClass.cs" />
-    <Compile Include="Migrations\201805181443017_RemovedDepartmentToCourseClass.Designer.cs">
-      <DependentUpon>201805181443017_RemovedDepartmentToCourseClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805182234193_AddedInstructorToCourseClass.cs" />
-    <Compile Include="Migrations\201805182234193_AddedInstructorToCourseClass.Designer.cs">
-      <DependentUpon>201805182234193_AddedInstructorToCourseClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805182242290_ChagedDepartmentAndCourseClass.cs" />
-    <Compile Include="Migrations\201805182242290_ChagedDepartmentAndCourseClass.Designer.cs">
-      <DependentUpon>201805182242290_ChagedDepartmentAndCourseClass.cs</DependentUpon>
+    <Compile Include="Migrations\201806201222576_SeedStudents.cs" />
+    <Compile Include="Migrations\201806201222576_SeedStudents.Designer.cs">
+      <DependentUpon>201806201222576_SeedStudents.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
@@ -376,29 +352,14 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805170924172_AddedInformationToCourse.resx">
-      <DependentUpon>201805170924172_AddedInformationToCourse.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806200427361_InitialSetup.resx">
+      <DependentUpon>201806200427361_InitialSetup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805171032204_AddedNewClasses.resx">
-      <DependentUpon>201805171032204_AddedNewClasses.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806201207008_SeedCourses.resx">
+      <DependentUpon>201806201207008_SeedCourses.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805171035574_ChangedIdNameOnOfficeAssignments.resx">
-      <DependentUpon>201805171035574_ChangedIdNameOnOfficeAssignments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805181154541_AddedFullNameToStudentClass.resx">
-      <DependentUpon>201805181154541_AddedFullNameToStudentClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805181442101_AddedDepartmentToCourseClass.resx">
-      <DependentUpon>201805181442101_AddedDepartmentToCourseClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805181443017_RemovedDepartmentToCourseClass.resx">
-      <DependentUpon>201805181443017_RemovedDepartmentToCourseClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805182234193_AddedInstructorToCourseClass.resx">
-      <DependentUpon>201805182234193_AddedInstructorToCourseClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805182242290_ChagedDepartmentAndCourseClass.resx">
-      <DependentUpon>201805182242290_ChagedDepartmentAndCourseClass.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806201222576_SeedStudents.resx">
+      <DependentUpon>201806201222576_SeedStudents.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

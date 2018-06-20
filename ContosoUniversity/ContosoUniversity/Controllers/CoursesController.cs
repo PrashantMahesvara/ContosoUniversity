@@ -120,12 +120,16 @@ namespace ContosoUniversity.Controllers
 
             if (ModelState.IsValid)
             {
-                //_db.Entry(course).State = EntityState.Modified;
+             //   _db.Entry(course).State = EntityState.Modified;
+
+                _db.Entry(course).State = EntityState.Modified;
+
+
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(viewModel);
+            return View(course);
         }
 
         [HttpGet]
