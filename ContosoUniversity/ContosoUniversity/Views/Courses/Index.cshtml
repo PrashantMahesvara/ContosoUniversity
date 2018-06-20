@@ -14,7 +14,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.CourseCode)
             </th>
             <th>
                 @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm })
@@ -33,7 +33,7 @@
         {
             <tr>
                 <td>
-                    <b>@Html.DisplayFor(modelItem => item.Id)</b>
+                    <b>@Html.DisplayFor(modelItem => item.CourseCode)</b>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Title, new { id = item.Id })
@@ -49,6 +49,7 @@
             </tr>
         }
     </tbody>
+    <hr />
     <br />
 </table>
 

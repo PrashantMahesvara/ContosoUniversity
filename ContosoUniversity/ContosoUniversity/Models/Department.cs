@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace ContosoUniversity.Models
 {
     public class Department
     {
+        [Key]
         public int Id { get; set; }
+
         [StringLength(50, MinimumLength = 3)]
         public string Name { get; set; }
         [DataType(DataType.Currency)]
@@ -21,7 +21,6 @@ namespace ContosoUniversity.Models
         public DateTime StartDate { get; set; }
         public int? InstructorId { get; set; }
         public virtual Instructor Administrator { get; set; }
-        //public virtual ICollection<Course> Courses { get; set; }
-    
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }

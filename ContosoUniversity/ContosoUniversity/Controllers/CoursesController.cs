@@ -19,7 +19,7 @@ namespace ContosoUniversity.Controllers
         }
         
         [HttpGet]
-        public ViewResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             var listOfCourses = _db.Courses.ToList();
 
@@ -27,7 +27,7 @@ namespace ContosoUniversity.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
             var courseDetails = _db.Courses.Find(id);
             if (courseDetails == null)
@@ -87,8 +87,7 @@ namespace ContosoUniversity.Controllers
             return View("Create", viewModel);
         }
 
-
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
             var course = _db.Courses.Find(id);
 
@@ -120,11 +119,7 @@ namespace ContosoUniversity.Controllers
 
             if (ModelState.IsValid)
             {
-             //   _db.Entry(course).State = EntityState.Modified;
-
                 _db.Entry(course).State = EntityState.Modified;
-
-
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -133,7 +128,7 @@ namespace ContosoUniversity.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(string id, bool? saveChangesError = false)
+        public ActionResult Delete(int id, bool? saveChangesError = false)
         {
             Course course = _db.Courses.Find(id);
 
@@ -152,7 +147,7 @@ namespace ContosoUniversity.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             try
             {

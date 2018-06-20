@@ -19,7 +19,7 @@ namespace ContosoUniversity.Controllers
         }
 
         [HttpGet]
-        public ViewResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             var listOfStudents = _db.Students.ToList();
 
@@ -30,6 +30,7 @@ namespace ContosoUniversity.Controllers
         public ActionResult Details(int? id)
         {
             var studentDetails = _db.Students.Find(id);
+
             if (studentDetails == null)
                 return HttpNotFound();
 
@@ -65,6 +66,11 @@ namespace ContosoUniversity.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
+            var studentDetails = _db.Students.Find(id);
+
+            if (studentDetails == null)
+                return HttpNotFound();
+
             var viewModel = new StudentViewModel
             {
                 Student = _db.Students.Find(id),
@@ -72,11 +78,6 @@ namespace ContosoUniversity.Controllers
                 Enrollments = _db.Enrollments.ToList(),
                 Enrollment = new Enrollment()
             };
-
-            var studentDetails = _db.Students.Find(id);
-
-            if (studentDetails == null)
-                return HttpNotFound();
 
             return View(studentDetails);
         }
@@ -130,7 +131,7 @@ namespace ContosoUniversity.Controllers
         [HttpGet]
         public ActionResult Delete(int? id, bool? saveChangesError=false)
         {
-            Student student = _db.Students.Find(id);
+            var student = _db.Students.Find(id);
 
             if (student == null)
                 return HttpNotFound();
@@ -151,7 +152,7 @@ namespace ContosoUniversity.Controllers
         {
             try
             {
-                Student student = _db.Students.Find(id);
+                var student = _db.Students.Find(id);
                 _db.Students.Remove(student);
                 _db.SaveChanges();
             }

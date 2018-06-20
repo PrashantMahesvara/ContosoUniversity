@@ -195,8 +195,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstructorsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Enums\Grade.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,8 +217,37 @@
     <Compile Include="Migrations\201806201222576_SeedStudents.Designer.cs">
       <DependentUpon>201806201222576_SeedStudents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806201236559_SeedEnrollments.cs" />
+    <Compile Include="Migrations\201806201236559_SeedEnrollments.Designer.cs">
+      <DependentUpon>201806201236559_SeedEnrollments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806201303583_AddedInstructorClass.cs" />
+    <Compile Include="Migrations\201806201303583_AddedInstructorClass.Designer.cs">
+      <DependentUpon>201806201303583_AddedInstructorClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806201305450_SeedInstructors.cs" />
+    <Compile Include="Migrations\201806201305450_SeedInstructors.Designer.cs">
+      <DependentUpon>201806201305450_SeedInstructors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806201316183_AddedDepartment.cs" />
+    <Compile Include="Migrations\201806201316183_AddedDepartment.Designer.cs">
+      <DependentUpon>201806201316183_AddedDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806201323006_AddedOfficeAssignment.cs" />
+    <Compile Include="Migrations\201806201323006_AddedOfficeAssignment.Designer.cs">
+      <DependentUpon>201806201323006_AddedOfficeAssignment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806201341149_SeedDepartments.cs" />
+    <Compile Include="Migrations\201806201341149_SeedDepartments.Designer.cs">
+      <DependentUpon>201806201341149_SeedDepartments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806201431312_AddedKeyToDepartmentModel.cs" />
+    <Compile Include="Migrations\201806201431312_AddedKeyToDepartmentModel.Designer.cs">
+      <DependentUpon>201806201431312_AddedKeyToDepartmentModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CourseInstructor.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -360,6 +393,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806201222576_SeedStudents.resx">
       <DependentUpon>201806201222576_SeedStudents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806201236559_SeedEnrollments.resx">
+      <DependentUpon>201806201236559_SeedEnrollments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806201303583_AddedInstructorClass.resx">
+      <DependentUpon>201806201303583_AddedInstructorClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806201305450_SeedInstructors.resx">
+      <DependentUpon>201806201305450_SeedInstructors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806201316183_AddedDepartment.resx">
+      <DependentUpon>201806201316183_AddedDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806201323006_AddedOfficeAssignment.resx">
+      <DependentUpon>201806201323006_AddedOfficeAssignment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806201341149_SeedDepartments.resx">
+      <DependentUpon>201806201341149_SeedDepartments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806201431312_AddedKeyToDepartmentModel.resx">
+      <DependentUpon>201806201431312_AddedKeyToDepartmentModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

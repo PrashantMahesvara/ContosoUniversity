@@ -81,12 +81,28 @@ namespace ContosoUniversity.Controllers
             if (department == null)
                 return HttpNotFound();
 
-            return View(department);
+            var viewModel = new DepartmentViewModel
+            {
+                Department = department,
+                Departments = _db.Departments.ToList(),
+                Instructors = _db.Instructors.ToList(),
+                Courses = _db.Courses.ToList()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(Department department, int id)
+        public ActionResult Edit(Department department)
         {
+            var viewModel = new DepartmentViewModel
+            {
+                Department = department,
+                Departments = _db.Departments.ToList(),
+                Instructors = _db.Instructors.ToList(),
+                Courses = _db.Courses.ToList()
+            };
+
             if (ModelState.IsValid)
             {
                 _db.Entry(department).State = EntityState.Modified;
