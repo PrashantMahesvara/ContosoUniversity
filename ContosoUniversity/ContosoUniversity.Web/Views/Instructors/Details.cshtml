@@ -1,0 +1,69 @@
+﻿@*@model ContosoUniversity.Web.Models.Instructor*@
+
+@model ContosoUniversity.Web.ViewModels.University.InstructorViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Instructor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Instructor.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instructor.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instructor.MiddleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instructor.MiddleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instructor.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instructor.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instructor.HireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instructor.HireDate)
+        </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.Instructor.Courses) </dt>
+        <dd>
+            <table class="table">
+            <tr>
+                <th>This instructor teaches the following courses</th>
+            </tr>
+            
+            @foreach (var item in Model.InstructorCourses)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(modelItem => item.Course.Title )</td>
+                    </tr>
+            }
+                </table>
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Instructor.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

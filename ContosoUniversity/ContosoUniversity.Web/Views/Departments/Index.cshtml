@@ -1,0 +1,64 @@
+﻿@model ContosoUniversity.Web.ViewModels.University.DepartmentViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of all our departments</h2>
+
+<p>
+    @Html.ActionLink("Add department", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </th>
+        <th>
+            Administrator
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Department.Budget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.StartDate)
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Departments)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @if (item.Instructor == null)
+                {
+                   <p>None assigned</p>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Instructor.LastName)
+                }
+
+
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Budget)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary"})
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    }
+</table>
