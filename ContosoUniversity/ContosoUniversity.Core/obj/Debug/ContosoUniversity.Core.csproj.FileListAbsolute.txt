@@ -10,3 +10,7 @@ F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\Cont
 F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\bin\Debug\EntityFramework.xml
 F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\bin\Debug\EntityFramework.SqlServer.xml
 F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\obj\Debug\ContosoUniversity.Core.csproj.CopyComplete
+F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml

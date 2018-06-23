@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
-namespace ContosoUniversity.Web.Models
+namespace ContosoUniversity.Core.Domain
 {
     public class Course
     {
@@ -25,6 +25,5 @@ namespace ContosoUniversity.Web.Models
 
         public int DepartmentId { get; set; }
         public virtual Department Department { get; set; }
-
     }
 }

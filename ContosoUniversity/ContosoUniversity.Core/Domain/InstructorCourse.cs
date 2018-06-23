@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ContosoUniversity.Web.Models
+namespace ContosoUniversity.Core.Domain
 {
     public class InstructorCourse
     {

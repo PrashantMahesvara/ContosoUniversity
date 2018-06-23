@@ -1,8 +1,9 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using ContosoUniversity.Core.Domain;
+using Microsoft.AspNet.Identity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace ContosoUniversity.Web.Models
 {

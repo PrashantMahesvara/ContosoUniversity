@@ -1,10 +1,10 @@
-﻿using ContosoUniversity.Web.Models;
-using ContosoUniversity.Web.ViewModels.University;
-using System;
-using System.Data;
+﻿using ContosoUniversity.Web.ViewModels.University;
+using ContosoUniversity.Web.Models;
 using System.Data.Entity;
-using System.Linq;
 using System.Web.Mvc;
+using System.Data;
+using System.Linq;
+using System;
 
 namespace ContosoUniversity.Web.Controllers
 {
@@ -21,21 +21,21 @@ namespace ContosoUniversity.Web.Controllers
         [HttpGet]
         public ViewResult Index(string sortOrder, string searchString)
         {
-            ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.CreditsSortParm = sortOrder == "StartDate" ? "startdate_desc" : "StartDate";
-            var departments = from c in _db.Departments
-                          select c;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.BudgetSortParm = sortOrder == "budget" ? "budget_desc" : "budget";
+            var departments = from d in _db.Departments
+                          select d;
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    departments = departments.OrderByDescending(s => s.Name);
+                    departments = departments.OrderByDescending(d => d.Name);
                     break;
-                case "StartDate":
-                    departments = departments.OrderBy(s => s.StartDate);
+                case "budget":
+                    departments = departments.OrderBy(s => s.Budget);
                     break;
-                case "startdate_desc":
-                    departments = departments.OrderByDescending(s => s.StartDate);
+                case "budget_desc":
+                    departments = departments.OrderByDescending(s => s.Budget);
                     break;
                 default:
                     departments = departments.OrderBy(s => s.Name);

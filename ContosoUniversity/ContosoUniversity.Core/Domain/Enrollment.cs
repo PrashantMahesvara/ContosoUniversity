@@ -1,7 +1,7 @@
-﻿using ContosoUniversity.Web.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using ContosoUniversity.Core.Enums;
 
-namespace ContosoUniversity.Web.Models
+namespace ContosoUniversity.Core.Domain
 {
     public class Enrollment
     {

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System;
 
-namespace ContosoUniversity.Web.Models
+namespace ContosoUniversity.Core.Domain
 {
     public class Department
     {

@@ -18,10 +18,10 @@
             @Html.DisplayNameFor(model => model.Course.CourseCode)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Course.Title)
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Course.Credits)
+            @Html.ActionLink("Puntis", "Index", new { sortOrder = ViewBag.CreditsSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Course.Information)

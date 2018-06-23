@@ -1,8 +1,8 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System;
 
-namespace ContosoUniversity.Web.Models
+namespace ContosoUniversity.Core.Domain
 {
     public class Instructor
     {
