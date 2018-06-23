@@ -37,6 +37,20 @@ namespace ContosoUniversity.Web.Controllers
             return View(data.ToList());
         }
 
+        public ActionResult InstructorBodyStatistics()
+        {
+            IQueryable<HiredDateGroup> data = from instructor in _db.Instructors
+                                                   group instructor by instructor.HireDate into dateGroup
+                                                   select new HiredDateGroup()
+                                                   {
+                                                       HiredDate = dateGroup.Key,
+                                                       InstructorCount = dateGroup.Count()
+
+                                                   };
+
+            return View(data.ToList());
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

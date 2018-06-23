@@ -6,6 +6,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using PagedList;
+
 
 namespace ContosoUniversity.Web.Controllers
 {
@@ -15,26 +17,41 @@ namespace ContosoUniversity.Web.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            base.Dispose(disposing);
             _db.Dispose();
+            base.Dispose(disposing);
         }
 
         [HttpGet]
-        public ActionResult Index(string sortOrder, string searchString)
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var listOfStudents = _db.Students.ToList();
-
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.DateSortParm = sortOrder == "date" ? "date_desc" : "date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var students = from s in _db.Students
                            select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.FirstMiddleName.ToLower().Contains(searchString.ToLower()));
+            }
 
             switch (sortOrder)
             {
                 case "name_desc":
                     students = students.OrderByDescending(s => s.LastName);
                     break;
-                case "Date":
+                case "date":
                     students = students.OrderBy(s => s.EnrollmentDate);
                     break;
                 case "date_desc":
@@ -45,7 +62,9 @@ namespace ContosoUniversity.Web.Controllers
                     break;
             }
 
-            return View(listOfStudents);
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(students.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ContosoUniversity.Web.Controllers
 {
@@ -14,37 +15,56 @@ namespace ContosoUniversity.Web.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            base.Dispose(disposing);
             _db.Dispose();
+            base.Dispose(disposing);
         }
 
         [HttpGet]
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-            var instructors = from s in _db.Instructors
-                           select s;
+            ViewBag.DateSortParm = sortOrder == "date" ? "date_desc" : "date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var instructors = from i in _db.Instructors
+                           select i;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                instructors = instructors.Where(s => s.FirstName.ToLower().Contains(searchString.ToLower()));
+            }
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    instructors = instructors.OrderByDescending(s => s.LastName);
+                    instructors = instructors.OrderByDescending(i => i.LastName);
                     break;
-                case "Date":
-                    instructors = instructors.OrderBy(s => s.HireDate);
+                case "date":
+                    instructors = instructors.OrderBy(i => i.HireDate);
                     break;
                 case "date_desc":
-                    instructors = instructors.OrderByDescending(s => s.HireDate);
+                    instructors = instructors.OrderByDescending(i => i.HireDate);
                     break;
                 default:
-                    instructors = instructors.OrderBy(s => s.LastName);
+                    instructors = instructors.OrderBy(i => i.LastName);
                     break;
             }
 
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
             var listOfInstructors = _db.Instructors.ToList();
 
-            return View(listOfInstructors);
+            return View(instructors.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]

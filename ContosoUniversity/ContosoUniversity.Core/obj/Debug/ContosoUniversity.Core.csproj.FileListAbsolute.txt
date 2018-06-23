@@ -14,3 +14,7 @@ F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\Cont
 F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\bin\Debug\PagedList.dll
+F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\bin\Debug\PagedList.Mvc.dll
+F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\bin\Debug\PagedList.xml
+F:\Pengy Fatwaddle\Visual Studio 2017\Projects\Sourcetree\ContosoUniversity\ContosoUniversity\ContosoUniversity.Core\bin\Debug\PagedList.Mvc.xml
