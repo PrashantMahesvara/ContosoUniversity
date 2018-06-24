@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Web.Mvc;
 using System.Data;
 using System.Linq;
+using PagedList;
 using System;
 
 namespace ContosoUniversity.Web.Controllers
@@ -18,13 +19,15 @@ namespace ContosoUniversity.Web.Controllers
             _db.Dispose();
         }
 
-        [HttpGet]
-        public ViewResult Index(string sortOrder, string searchString)
+
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            var departments = from d in _db.Departments.Include(d => d.Instructor)
+                          select d;
+
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.BudgetSortParm = sortOrder == "budget" ? "budget_desc" : "budget";
-            var departments = from d in _db.Departments
-                          select d;
+            ViewBag.AdminSortParm = sortOrder == "admin" ? "admin_desc" : "admin";
 
             switch (sortOrder)
             {
@@ -37,21 +40,34 @@ namespace ContosoUniversity.Web.Controllers
                 case "budget_desc":
                     departments = departments.OrderByDescending(s => s.Budget);
                     break;
+                case "admin":
+                    departments = departments.OrderBy(s => s.Instructor.FullName);
+                    break;
+                case "admin_desc":
+                    departments = departments.OrderByDescending(s => s.Instructor.FullName);
+                    break;
                 default:
                     departments = departments.OrderBy(s => s.Name);
                     break;
             }
 
-
-            var listOfDepartments = _db.Departments.ToList();
-
-            var viewModel = new DepartmentViewModel
+            if (searchString != null)
             {
-                Departments = _db.Departments.ToList(),
-                Instructors = _db.Instructors.ToList()
-            };
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
-            return View(viewModel);
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString)) { departments = departments.Where(s => s.Name.ToLower().Contains(searchString.ToLower()) ); }
+
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(departments.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]

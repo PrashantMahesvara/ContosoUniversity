@@ -1,5 +1,5 @@
-﻿using ContosoUniversity.Web.Models;
-using ContosoUniversity.Web.ViewModels.University;
+﻿using ContosoUniversity.Web.ViewModels.University;
+using ContosoUniversity.Web.Models;
 using System;
 using System.Data;
 using System.Data.Entity;
@@ -21,11 +21,32 @@ namespace ContosoUniversity.Web.Controllers
             base.Dispose(disposing);
         }
 
-        [HttpGet]
+        
+
+        
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            var students = from s in _db.Students
+                           select s;
+
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "date" ? "date_desc" : "date";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    students = students.OrderByDescending(s => s.LastName);
+                    break;
+                case "Date":
+                    students = students.OrderBy(s => s.EnrollmentDate);
+                    break;
+                case "date_desc":
+                    students = students.OrderByDescending(s => s.EnrollmentDate);
+                    break;
+                default:
+                    students = students.OrderBy(s => s.LastName);
+                    break;
+            }
 
             if (searchString != null)
             {
@@ -38,33 +59,19 @@ namespace ContosoUniversity.Web.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var students = from s in _db.Students
-                           select s;
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                students = students.Where(s => s.FirstMiddleName.ToLower().Contains(searchString.ToLower()));
-            }
 
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    students = students.OrderByDescending(s => s.LastName);
-                    break;
-                case "date":
-                    students = students.OrderBy(s => s.EnrollmentDate);
-                    break;
-                case "date_desc":
-                    students = students.OrderByDescending(s => s.EnrollmentDate);
-                    break;
-                default:
-                    students = students.OrderBy(s => s.LastName);
-                    break;
-            }
 
-            int pageSize = 3;
+            if (!String.IsNullOrEmpty(searchString)) { students = students.Where(s => s.LastName.ToLower().Contains(searchString.ToLower()) || s.FirstMiddleName.ToLower().Contains(searchString.ToLower())); }
+
+
+
+
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(students.ToPagedList(pageNumber, pageSize));
+
+
         }
 
         [HttpGet]

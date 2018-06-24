@@ -19,30 +19,14 @@ namespace ContosoUniversity.Web.Controllers
             base.Dispose(disposing);
         }
 
-        [HttpGet]
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            var instructors = from i in _db.Instructors
+                              select i;
+
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "date" ? "date_desc" : "date";
-
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
-
-            var instructors = from i in _db.Instructors
-                           select i;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                instructors = instructors.Where(s => s.FirstName.ToLower().Contains(searchString.ToLower()));
-            }
 
             switch (sortOrder)
             {
@@ -59,6 +43,24 @@ namespace ContosoUniversity.Web.Controllers
                     instructors = instructors.OrderBy(i => i.LastName);
                     break;
             }
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                instructors = instructors.Where(s => s.FirstName.ToLower().Contains(searchString.ToLower()) || s.LastName.ToLower().Contains(searchString.ToLower()));
+            }
+
+
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);

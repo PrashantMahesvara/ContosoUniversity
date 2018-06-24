@@ -1,5 +1,6 @@
 ﻿using ContosoUniversity.Web.Models;
 using ContosoUniversity.Web.ViewModels.University;
+using PagedList;
 using System;
 using System.Data;
 using System.Data.Entity;
@@ -19,38 +20,46 @@ namespace ContosoUniversity.Web.Controllers
             _db.Dispose();
         }
 
-        [HttpGet]
-        public ActionResult Index(string sortOrder, string searchString)
-        {
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        {       
+            var courses = from c in _db.Courses.Include(d => d.Department)
+                           select c;
+
             ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             ViewBag.CreditsSortParm = sortOrder == "Credits" ? "credits_desc" : "Credits";
-            var courses = from c in _db.Courses
-                           select c;
 
             switch (sortOrder)
             {
                 case "title_desc":
-                    courses = courses.OrderByDescending(s => s.Title);
+                    courses = courses.OrderByDescending(c => c.Title);
                     break;
                 case "Credits":
-                    courses = courses.OrderBy(s => s.Credits);
+                    courses = courses.OrderBy(c => c.Credits);
                     break;
                 case "credits_desc":
-                    courses = courses.OrderByDescending(s => s.Credits);
+                    courses = courses.OrderByDescending(c => c.Credits);
                     break;
                 default:
-                    courses = courses.OrderBy(s => s.Title);
+                    courses = courses.OrderBy(c => c.Title);
                     break;
             }
 
-            var viewModel = new CourseViewModel
+            if (searchString != null)
             {
-                Courses = _db.Courses.ToList(),
-                Instructors = _db.Instructors.ToList(),
-                Departments = _db.Departments.ToList()
-            };
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
-            return View(viewModel);
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString)) { courses = courses.Where(s => s.Title.ToLower().Contains(searchString.ToLower()) || s.Title.ToLower().Contains(searchString.ToLower())); }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(courses.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]

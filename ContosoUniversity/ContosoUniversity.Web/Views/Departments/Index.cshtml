@@ -1,4 +1,6 @@
-﻿@model ContosoUniversity.Web.ViewModels.University.DepartmentViewModel
+﻿@model PagedList.IPagedList<ContosoUniversity.Web.Models.Department>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -6,29 +8,32 @@
 
 <h2>List of all our departments</h2>
 
+@using (Html.BeginForm(FormMethod.Get))
+{<p> Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) <input type="submit" value="Find" /></p>}
+
 <p>
     @Html.ActionLink("Add department", "Create", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Department", "Index", new { sortOrder = ViewBag.NameSortParam })
+            @Html.ActionLink("Department", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
             Administrator
         </th>
         <th>
-            @Html.ActionLink("Credits", "Index", new { sortOrder = ViewBag.CreditsSortParam })
+            @Html.ActionLink("Budget", "Index", new { sortOrder = ViewBag.BudgetSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Department.StartDate)
+            Start date
         </th>
         <th>
             Actions
         </th>
     </tr>
 
-    @foreach (var item in Model.Departments)
+    @foreach (var item in Model)
     {
         <tr>
             <td>
@@ -37,27 +42,34 @@
             <td>
                 @if (item.Instructor == null)
                 {
-                   <p>None assigned</p>
+                    <p>None assigned</p>
                 }
                 else
                 {
-                    @Html.DisplayFor(modelItem => item.Instructor.LastName)
+                    @Html.DisplayFor(modelItem => item.Instructor.FullName)
                 }
-
-
-
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Budget)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
+                @if (item.Instructor == null)
+                {
+                    <p>No administrator</p>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                }
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary"})
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
                 @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-primary" })
             </td>
         </tr>
     }
 </table>
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
