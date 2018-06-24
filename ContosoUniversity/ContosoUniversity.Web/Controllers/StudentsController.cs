@@ -8,7 +8,6 @@ using System.Net;
 using System.Web.Mvc;
 using PagedList;
 
-
 namespace ContosoUniversity.Web.Controllers
 {
     public class StudentsController : Controller
@@ -21,9 +20,6 @@ namespace ContosoUniversity.Web.Controllers
             base.Dispose(disposing);
         }
 
-        
-
-        
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             var students = from s in _db.Students
@@ -59,19 +55,11 @@ namespace ContosoUniversity.Web.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-
-
-
             if (!String.IsNullOrEmpty(searchString)) { students = students.Where(s => s.LastName.ToLower().Contains(searchString.ToLower()) || s.FirstMiddleName.ToLower().Contains(searchString.ToLower())); }
-
-
-
 
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(students.ToPagedList(pageNumber, pageSize));
-
-
         }
 
         [HttpGet]

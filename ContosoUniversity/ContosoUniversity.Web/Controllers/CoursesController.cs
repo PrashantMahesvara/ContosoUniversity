@@ -20,47 +20,60 @@ namespace ContosoUniversity.Web.Controllers
             _db.Dispose();
         }
 
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
-        {       
-            var courses = from c in _db.Courses.Include(d => d.Department)
-                           select c;
-
-            ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
-            ViewBag.CreditsSortParm = sortOrder == "Credits" ? "credits_desc" : "Credits";
-
-            switch (sortOrder)
-            {
-                case "title_desc":
-                    courses = courses.OrderByDescending(c => c.Title);
-                    break;
-                case "Credits":
-                    courses = courses.OrderBy(c => c.Credits);
-                    break;
-                case "credits_desc":
-                    courses = courses.OrderByDescending(c => c.Credits);
-                    break;
-                default:
-                    courses = courses.OrderBy(c => c.Title);
-                    break;
-            }
-
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
-
-            if (!String.IsNullOrEmpty(searchString)) { courses = courses.Where(s => s.Title.ToLower().Contains(searchString.ToLower()) || s.Title.ToLower().Contains(searchString.ToLower())); }
-
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            return View(courses.ToPagedList(pageNumber, pageSize));
+        public ActionResult Index(int? SelectedDepartment, string sortOrder)
+        {
+            var departments = _db.Departments.OrderBy(q => q.Name).ToList();
+            ViewBag.SelectedDepartment = new SelectList(departments, "Id", "Name", SelectedDepartment);
+            int departmentID = SelectedDepartment.GetValueOrDefault();
+            IQueryable<Course> courses = _db.Courses
+            .Where(c => !SelectedDepartment.HasValue || c.DepartmentId == departmentID)
+            .OrderBy(d => d.Id)
+            .Include(d => d.Department);
+            var sql = courses.ToString();
+            return View(courses.ToList());
         }
+
+        //public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        //{       
+        //    var courses = from c in _db.Courses.Include(d => d.Department)
+        //                   select c;
+
+        //    ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+        //    ViewBag.CreditsSortParm = sortOrder == "Credits" ? "credits_desc" : "Credits";
+
+        //    switch (sortOrder)
+        //    {
+        //        case "title_desc":
+        //            courses = courses.OrderByDescending(c => c.Title);
+        //            break;
+        //        case "Credits":
+        //            courses = courses.OrderBy(c => c.Credits);
+        //            break;
+        //        case "credits_desc":
+        //            courses = courses.OrderByDescending(c => c.Credits);
+        //            break;
+        //        default:
+        //            courses = courses.OrderBy(c => c.Title);
+        //            break;
+        //    }
+
+        //    if (searchString != null)
+        //    {
+        //        page = 1;
+        //    }
+        //    else
+        //    {
+        //        searchString = currentFilter;
+        //    }
+
+        //    ViewBag.CurrentFilter = searchString;
+
+        //    if (!String.IsNullOrEmpty(searchString)) { courses = courses.Where(s => s.Title.ToLower().Contains(searchString.ToLower()) || s.Title.ToLower().Contains(searchString.ToLower())); }
+
+        //    int pageSize = 10;
+        //    int pageNumber = (page ?? 1);
+        //    return View(courses.ToPagedList(pageNumber, pageSize));
+        //}
 
         [HttpGet]
         public ActionResult Details(int id)

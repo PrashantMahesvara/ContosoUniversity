@@ -19,10 +19,9 @@ namespace ContosoUniversity.Web.Controllers
             base.Dispose(disposing);
         }
 
-
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var instructors = from i in _db.Instructors
+            var instructors = from i in _db.Instructors.Include(o => o.OfficeAssignment)
                               select i;
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -60,11 +59,8 @@ namespace ContosoUniversity.Web.Controllers
                 instructors = instructors.Where(s => s.FirstName.ToLower().Contains(searchString.ToLower()) || s.LastName.ToLower().Contains(searchString.ToLower()));
             }
 
-
-
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-            var listOfInstructors = _db.Instructors.ToList();
 
             return View(instructors.ToPagedList(pageNumber, pageSize));
         }

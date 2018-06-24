@@ -1,71 +1,81 @@
-﻿@*@model IEnumerable<ContosoUniversity.Web.Models.Course>*@
+﻿@*@model PagedList.IPagedList<ContosoUniversity.Web.Models.Course>
+    @using PagedList.Mvc;*@
 
-@model PagedList.IPagedList<ContosoUniversity.Web.Models.Course>
-@using PagedList.Mvc;
+
+
+@model IEnumerable<ContosoUniversity.Web.Models.Course>
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-
 @{
-    ViewBag.Title = "";
+    ViewBag.Title = "Courses";
 }
 
 <h2>List of all our courses</h2>
 
 @using (Html.BeginForm(FormMethod.Get))
-{<p> Find by title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) <input type="submit" value="Find" /></p>}
-
+{
+    <p><b>
+    Select Department: @Html.DropDownList("SelectedDepartment", "All")
+    <input type="submit" value="Filter" />
+</b>
+    </p>
+}
+ 
 <p>
     @Html.ActionLink("Add course", "Create", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Department
-        </th>
-        <th>
-            Course Code
-        </th>
-        <th>
-            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Puntis", "Index", new { sortOrder = ViewBag.CreditsSortParm })
-        </th>
-        <th>
-            Information
-        </th>
-        <th>
-            Actions
-        </th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <b>@Html.DisplayFor(modelItem => item.Department.Name)</b>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Credits)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Information)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
-                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-primary" })
-            </td>
-        </tr>
-    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Department
+                </th>
+                <th>
+                    Course Code
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Credits
+                </th>
+                <th>
+                    Information
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <b>@Html.DisplayFor(modelItem => item.Department.Name)</b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourseCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Credits)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Information)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-</table>
-
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@

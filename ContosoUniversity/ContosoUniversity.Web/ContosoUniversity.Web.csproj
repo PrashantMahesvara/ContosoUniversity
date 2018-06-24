@@ -258,6 +258,10 @@
     <Compile Include="Migrations\201806220649262_AddedNavigationalProperties.Designer.cs">
       <DependentUpon>201806220649262_AddedNavigationalProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806240627300_AddedOfficeAssignmentClass.cs" />
+    <Compile Include="Migrations\201806240627300_AddedOfficeAssignmentClass.Designer.cs">
+      <DependentUpon>201806240627300_AddedOfficeAssignmentClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
@@ -265,6 +269,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Instructor.cs" />
     <Compile Include="Models\InstructorCourse.cs" />
+    <Compile Include="Models\OfficeAssignment.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -376,7 +382,6 @@
     <Content Include="Views\Students\Edit.cshtml" />
     <Content Include="Views\Students\Delete.cshtml" />
     <Content Include="Views\Home\InstructorBodyStatistics.cshtml" />
-    <Content Include="Views\Students\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -433,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806220649262_AddedNavigationalProperties.resx">
       <DependentUpon>201806220649262_AddedNavigationalProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806240627300_AddedOfficeAssignmentClass.resx">
+      <DependentUpon>201806240627300_AddedOfficeAssignmentClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

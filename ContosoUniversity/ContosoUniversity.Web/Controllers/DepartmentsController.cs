@@ -64,7 +64,6 @@ namespace ContosoUniversity.Web.Controllers
 
             if (!String.IsNullOrEmpty(searchString)) { departments = departments.Where(s => s.Name.ToLower().Contains(searchString.ToLower()) ); }
 
-
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(departments.ToPagedList(pageNumber, pageSize));

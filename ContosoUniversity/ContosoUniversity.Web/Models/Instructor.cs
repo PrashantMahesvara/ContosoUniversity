@@ -24,5 +24,6 @@ namespace ContosoUniversity.Web.Models
         }
 
         public ICollection<Course> Courses { get; set; }
+        public virtual OfficeAssignment OfficeAssignment { get; set; }
     }
 }

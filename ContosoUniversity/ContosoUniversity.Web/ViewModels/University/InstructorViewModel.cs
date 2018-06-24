@@ -13,5 +13,8 @@ namespace ContosoUniversity.Web.ViewModels.University
 
         public InstructorCourse InstructorCourse { get; set; }
         public IEnumerable<InstructorCourse> InstructorCourses { get; set; }
+
+        public Enrollment Enrollment { get; set; }
+        public IEnumerable<Enrollment> Enrollments { get; set; }
     }
 }

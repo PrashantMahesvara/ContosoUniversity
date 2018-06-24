@@ -65,6 +65,7 @@
     <Compile Include="Domain\IdentityModels.cs" />
     <Compile Include="Domain\Instructor.cs" />
     <Compile Include="Domain\InstructorCourse.cs" />
+    <Compile Include="Domain\Person.cs" />
     <Compile Include="Domain\Student.cs" />
     <Compile Include="Enums\Grade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
