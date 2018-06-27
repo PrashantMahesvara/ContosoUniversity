@@ -86,10 +86,16 @@ namespace ContosoUniversity.Web.Controllers
             {
                 Course = courseDetails,
                 Courses = _db.Courses.ToList(),
+                Enrollments = _db.Enrollments.ToList(),
+                Students = _db.Students.ToList(),
                 InstructorCourses = _db.InstructorCourse.ToList(),
                 Instructors = _db.Instructors.ToList(),
                 Departments = _db.Departments.ToList()
             };
+
+
+
+
 
             return View(viewModel);
         }

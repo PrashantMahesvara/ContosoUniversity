@@ -9,20 +9,20 @@
 <h2>List of all our students</h2>
 
 @using (Html.BeginForm(FormMethod.Get))
-{<p> Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) <input type="submit" value="Find" /></p>}
+{<p><b> Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) <input type="submit" value="Find" /></b></p>}
 
 <p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Add student", "Create", null, new { @class = "btn btn-primary" })
 </p>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+                @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th>
-                First Name
+                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th>
                 @Html.ActionLink("Enrollment", "Index", new { sortOrder = ViewBag.DateSortParm })
@@ -37,10 +37,11 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
+                    @Html.DisplayFor(modelItem => item.FirstMiddleName)
+                 
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstMiddleName)
+                    @Html.DisplayFor(modelItem => item.LastName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EnrollmentDate)

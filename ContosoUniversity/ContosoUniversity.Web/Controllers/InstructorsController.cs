@@ -25,6 +25,7 @@ namespace ContosoUniversity.Web.Controllers
                               select i;
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_name_desc" : "first_name";
             ViewBag.DateSortParm = sortOrder == "date" ? "date_desc" : "date";
 
             switch (sortOrder)
@@ -37,6 +38,12 @@ namespace ContosoUniversity.Web.Controllers
                     break;
                 case "date_desc":
                     instructors = instructors.OrderByDescending(i => i.HireDate);
+                    break;
+                case "first_name_desc":
+                    instructors = instructors.OrderByDescending(s => s.FirstName);
+                    break;
+                case "first_name":
+                    instructors = instructors.OrderBy(s => s.FirstName);
                     break;
                 default:
                     instructors = instructors.OrderBy(i => i.LastName);
@@ -59,7 +66,7 @@ namespace ContosoUniversity.Web.Controllers
                 instructors = instructors.Where(s => s.FirstName.ToLower().Contains(searchString.ToLower()) || s.LastName.ToLower().Contains(searchString.ToLower()));
             }
 
-            int pageSize = 3;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
             return View(instructors.ToPagedList(pageNumber, pageSize));

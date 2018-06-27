@@ -26,6 +26,7 @@ namespace ContosoUniversity.Web.Controllers
                            select s;
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_name_desc" : "first_name";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
             switch (sortOrder)
@@ -38,6 +39,12 @@ namespace ContosoUniversity.Web.Controllers
                     break;
                 case "date_desc":
                     students = students.OrderByDescending(s => s.EnrollmentDate);
+                    break;
+                case "first_name_desc":
+                    students = students.OrderByDescending(s => s.FirstMiddleName);
+                    break;
+                case "first_name":
+                    students = students.OrderBy(s => s.FirstMiddleName);
                     break;
                 default:
                     students = students.OrderBy(s => s.LastName);

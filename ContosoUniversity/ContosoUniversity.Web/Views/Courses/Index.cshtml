@@ -1,9 +1,4 @@
-﻿@*@model PagedList.IPagedList<ContosoUniversity.Web.Models.Course>
-    @using PagedList.Mvc;*@
-
-
-
-@model IEnumerable<ContosoUniversity.Web.Models.Course>
+﻿@model IEnumerable<ContosoUniversity.Web.Models.Course>
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
@@ -14,11 +9,7 @@
 
 @using (Html.BeginForm(FormMethod.Get))
 {
-    <p><b>
-    Select Department: @Html.DropDownList("SelectedDepartment", "All")
-    <input type="submit" value="Filter" />
-</b>
-    </p>
+    <p><b> Select Department: @Html.DropDownList("SelectedDepartment", "All")<input type="submit" value="Filter" /></b></p>
 }
  
 <p>
@@ -76,6 +67,3 @@
             }
         </tbody>
     </table>
-
-    @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@

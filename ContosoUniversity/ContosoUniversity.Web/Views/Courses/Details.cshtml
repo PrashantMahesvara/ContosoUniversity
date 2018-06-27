@@ -10,7 +10,6 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Course</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -57,8 +56,58 @@
             @Html.DisplayNameFor(model => model.Instructor)
         </dt>
         <dd>
-            <table class="table"> <tr> <th>Instructor</th> </tr> @foreach (var item in Model.InstructorCourses)
-        {<tr> <td> @Html.DisplayFor(modelItem => item.Instructor.FullName) </td>  </tr>}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Instructor</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+                    @foreach (var item in Model.InstructorCourses)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Instructor.FullName)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </dd>
+        <dt>
+            Enrolled students
+        </dt>
+        <dd>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Student
+                        </th>
+                 
+                        <th>
+                            Grade
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Enrollments)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Student.FullName)
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.Grade)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </dd>
 
