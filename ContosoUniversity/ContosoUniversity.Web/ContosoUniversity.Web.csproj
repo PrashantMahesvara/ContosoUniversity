@@ -258,6 +258,10 @@
     <Compile Include="Migrations\201806240627300_AddedOfficeAssignmentClass.Designer.cs">
       <DependentUpon>201806240627300_AddedOfficeAssignmentClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911271928275_SeedStudents.cs" />
+    <Compile Include="Migrations\201911271928275_SeedStudents.Designer.cs">
+      <DependentUpon>201911271928275_SeedStudents.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
@@ -436,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806240627300_AddedOfficeAssignmentClass.resx">
       <DependentUpon>201806240627300_AddedOfficeAssignmentClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911271928275_SeedStudents.resx">
+      <DependentUpon>201911271928275_SeedStudents.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

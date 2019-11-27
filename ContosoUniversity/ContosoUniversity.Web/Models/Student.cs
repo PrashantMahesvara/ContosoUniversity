@@ -29,6 +29,8 @@ namespace ContosoUniversity.Web.Models
 
         [DataType(DataType.Date)]
         public DateTime Birthday { get; set; }
+
+        [Display(Name = "Social Security Number")]
         public string SSN { get; set; }
 
         public int Age
