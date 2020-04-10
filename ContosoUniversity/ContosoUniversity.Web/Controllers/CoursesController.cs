@@ -49,10 +49,6 @@ namespace ContosoUniversity.Web.Controllers
                 Departments = _db.Departments.ToList()
             };
 
-
-
-
-
             return View(viewModel);
         }
 

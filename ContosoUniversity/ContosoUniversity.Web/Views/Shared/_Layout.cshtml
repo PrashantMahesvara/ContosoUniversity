@@ -30,11 +30,13 @@
                     <li>@Html.ActionLink("Departments", "Index", "Departments")</li>
                     <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
                     <li>@Html.ActionLink("Students", "Index", "Students")</li>
-                </ul>
-                @if (User.IsInRole("Admin"))
-                {
                     @Html.Partial("_LoginPartial")
-                }
+                </ul>
+                @*@if (User.IsInRole("Admin"))
+        {
+            @Html.Partial("_LoginPartial")
+        }*@
+   
             </div>
         </div>
     </div>

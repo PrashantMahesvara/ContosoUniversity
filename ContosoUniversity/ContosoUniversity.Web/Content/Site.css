@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.custom-center {
+    padding-left: 3em;
+
+    
+}
+
+.text-colour1 {
+    color: green;
+}

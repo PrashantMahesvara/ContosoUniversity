@@ -7,3 +7,4 @@ ContosoUniversity/ContosoUniversity.Web/obj/
 ContosoUniversity/ContosoUniversity.Web/bin/
 ContosoUniversity/ContosoUniversity.Core/bin/
 ContosoUniversity/ContosoUniversity.Web/Web.config
+*.cache

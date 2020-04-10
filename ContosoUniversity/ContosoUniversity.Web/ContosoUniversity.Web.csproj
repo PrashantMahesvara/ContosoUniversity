@@ -262,6 +262,10 @@
     <Compile Include="Migrations\201911271928275_SeedStudents.Designer.cs">
       <DependentUpon>201911271928275_SeedStudents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912011010271_SeedCourses.cs" />
+    <Compile Include="Migrations\201912011010271_SeedCourses.Designer.cs">
+      <DependentUpon>201912011010271_SeedCourses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
@@ -307,6 +311,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\icons\telescope.ico" />
+    <Content Include="Content\images\mainpageImage1.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -443,6 +448,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911271928275_SeedStudents.resx">
       <DependentUpon>201911271928275_SeedStudents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912011010271_SeedCourses.resx">
+      <DependentUpon>201912011010271_SeedCourses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
